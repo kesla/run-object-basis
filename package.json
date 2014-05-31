@@ -1,6 +1,6 @@
 {
   "name": "run-object-basis",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Base repo for run-series-object & run-parallel-object",
   "main": "run-object-basis.js",
   "scripts": {
