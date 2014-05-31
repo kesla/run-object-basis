@@ -1,0 +1,29 @@
+{
+  "name": "run-object-basis",
+  "version": "0.0.0",
+  "description": "Base repo for run-series-object & run-parallel-object",
+  "main": "run-object-basis.js",
+  "scripts": {
+    "test": "tape test/*-test.js"
+  },
+  "keywords": [],
+  "author": "David Björklund <david.bjorklund@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "~2.13.1",
+    "run-parallel": "^1.0.0",
+    "run-series": "^1.0.2"
+  },
+  "dependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kesla/run-object-basis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kesla/run-object-basis/issues"
+  },
+  "homepage": "https://github.com/kesla/run-object-basis"
+}
