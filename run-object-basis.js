@@ -1,19 +1,14 @@
-var isFunction = function (val) {
-      return typeof(val) === 'function'
-    }
-  , isObj = function (val) {
-      return typeof (val) === 'object' && val !== null
-    }
+var is = require('is-type')
 
 module.exports = function (base) {
   var run = function (object, callback) {
-        var result = Array.isArray(object) ? [] : {}
+        var result = is.array(object) ? [] : {}
           , tasks = []
 
         Object.keys(object).forEach(function (key) {
           var value = object[key]
 
-          if (isFunction (value))
+          if (is.function (value))
             tasks.push(function (done) {
               value(function (err, value2) {
                 if (err) return done(err)
@@ -21,7 +16,7 @@ module.exports = function (base) {
                 done(null)
               })
             })
-          else if (isObj (value))
+          else if (is.object (value))
             tasks.push(function (done) {
               run(value, function (err, value2) {
                 if (err) return done(err)

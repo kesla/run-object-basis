@@ -14,7 +14,9 @@
     "run-parallel": "^1.0.0",
     "run-series": "^1.0.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "is-type": "0.0.1"
+  },
   "directories": {
     "test": "test"
   },
