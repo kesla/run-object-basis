@@ -1,4 +1,6 @@
-var test = require('tape')
+var PassThrough = require('stream').PassThrough
+
+  , test = require('tape')
 
 module.exports = function (run) {
 
@@ -85,4 +87,43 @@ module.exports = function (run) {
       t.end()
     })
   })
+
+  test('object with nested streams', function (t) {
+    var stream1 = new PassThrough()
+      , stream2 = new PassThrough({ objectMode: true })
+
+      , obj = {
+            beep: {
+                boop: {
+                    foo: stream1
+                }
+              , bong: 'king kong'
+            }
+          , hello: stream2
+        }
+
+    stream1.write('h')
+    stream1.write('i')
+    stream1.end()
+
+    stream2.write([ 1 ])
+    stream2.write([ 2, 3 ])
+    stream2.end()
+
+    run(obj, function (err, result) {
+      t.deepEqual(
+          result
+        , {
+              beep: {
+                  boop: {
+                      foo: new Buffer('hi')
+                  }
+                , bong: 'king kong'
+              }
+            , hello: [ 1, 2, 3 ]
+          }
+      )
+      t.end()
+    })
+  });
 }

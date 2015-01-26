@@ -1,4 +1,6 @@
-var is = require('is-type')
+var collect = require('collect-stream')
+  , is = require('is-type')
+  , isStream = require('is-stream')
 
 module.exports = function (base) {
   var run = function (object, callback) {
@@ -8,7 +10,15 @@ module.exports = function (base) {
         Object.keys(object).forEach(function (key) {
           var value = object[key]
 
-          if (is.function (value))
+          if (isStream (value)) {
+            tasks.push(function (done) {
+              collect(value, function (err, value2) {
+                if (err) return done(err)
+                result[key] = value2
+                done(null)
+              })
+            })
+          } else if (is.function (value))
             tasks.push(function (done) {
               value(function (err, value2) {
                 if (err) return done(err)
