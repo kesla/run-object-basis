@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "collect-stream": "^1.0.0",
+    "dezalgo": "^1.0.1",
     "is-stream": "^1.0.1",
     "is-type": "0.0.1"
   },

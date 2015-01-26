@@ -1,9 +1,10 @@
 var collect = require('collect-stream')
+  , dz = require('dezalgo')
   , is = require('is-type')
   , isStream = require('is-stream')
 
 module.exports = function (base) {
-  var run = function (object, callback) {
+  return function run (object, callback) {
         var result = is.array(object) ? [] : {}
           , tasks = []
 
@@ -14,6 +15,8 @@ module.exports = function (base) {
                 done()
               }
             }
+
+        callback = dz(callback)
 
         Object.keys(object).forEach(function (key) {
           var value = object[key]
@@ -38,6 +41,4 @@ module.exports = function (base) {
           callback(err, result)
         })
       }
-
-  return run
 }

@@ -125,5 +125,16 @@ module.exports = function (run) {
       )
       t.end()
     })
-  });
+  })
+
+  test('run is always asynchronous', function (t) {
+    var async = false
+
+    run({}, function (err, result) {
+      t.equal(async, true)
+      t.end()
+    })
+
+    async = true
+  })
 }
